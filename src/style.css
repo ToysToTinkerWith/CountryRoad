@@ -1,0 +1,17 @@
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  @font-face {
+    font-family: 'Anton';
+    src: local('Anton'), url("/fonts/Anton.ttf") format('truetype');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
+                              'embedded-opentype', and 'svg' */
+  }
+
+  @font-face {
+    font-family: 'Signika';
+    src: local('Signika'), url("/fonts/Signika.ttf") format('truetype');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
+                              'embedded-opentype', and 'svg' */
+  }
