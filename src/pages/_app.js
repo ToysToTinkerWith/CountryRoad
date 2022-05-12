@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import * as gtag from '../../lib/gtag'
 
 import Nav from "../components/Nav"
+import Footer from "../components/Footer"
 
 
 import PropTypes from "prop-types";
@@ -66,7 +67,8 @@ export default function MyApp(props) {
       <CssBaseline />
         <AuthProvider>
           <Nav />
-        <Component {...pageProps} />
+            <Component {...pageProps} />
+          <Footer />
         </AuthProvider>
       </ThemeProvider>
     </React.Fragment>

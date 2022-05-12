@@ -105,7 +105,7 @@ export default class CommentsDisplay extends React.Component {
                 style={{width: "80%", display: "flex", margin: "auto"}}
                 onChange={this.handleChange}
             />
-            <Button variant="contained" style={{position: "relative", float: "right", marginRight: "10%"}} onClick={() => this.sendComment()} > send </Button>
+            <Button variant="contained" style={{position: "relative", backgroundColor: "#E5650F", float: "right", marginRight: "10%"}} onClick={() => this.sendComment()} > send </Button>
             <br />
             <br />
             {this.state.comments.length > 0 ?
