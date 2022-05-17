@@ -27,7 +27,7 @@ export default class Index extends React.Component {
         navigator.geolocation.getCurrentPosition((position) => {
 
             const loader = new Loader({
-                apiKey: 'AIzaSyA_w8IEIQ8uqSVILN1pdhCl29LHgZh9L8c',
+                apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
                 version: 'weekly',
               });
               
@@ -198,16 +198,20 @@ export default class Index extends React.Component {
                                 <Typography  style={{fontFamily: "Anton", fontSize: "18px", letterSpacing: "3px"}}> CHECK LOCATION </Typography>
                             </Button>
                             {this.state.postalCode ? 
-                                <Typography align="center" variant="h6" style={{fontFamily: "Anton", letterSpacing: "3px", padding: "5%"}}> Postal Code: {this.state.postalCode}  </Typography>
+                                whidbeyPostals.includes(this.state.postalCode) ?
+                                <>
+                                    <Typography align="center" variant="h6" style={{fontFamily: "Anton", letterSpacing: "3px", padding: "5%", paddingBottom: 0}}> Postal Code: {this.state.postalCode}  </Typography>
+                                    <Typography align="center" variant="h6" style={{fontFamily: "Anton", letterSpacing: "3px", padding: "5%"}}> You are in our service range! </Typography>
+                                </>
+                                :
+                                <>
+                                    <Typography align="center" variant="h6" style={{fontFamily: "Anton", letterSpacing: "3px", padding: "5%", paddingBottom: 0}}> Postal Code: {this.state.postalCode}  </Typography>
+                                    <Typography align="center" variant="h6" style={{fontFamily: "Anton", letterSpacing: "3px", padding: "5%"}}> You are out of our service range. </Typography>
+                                </>
                             :
-                                null
+                            null
                             }
-                            {whidbeyPostals.includes(this.state.postalCode) ? 
-                                <Typography align="center" variant="h6" style={{fontFamily: "Anton", letterSpacing: "3px", padding: "5%"}}> You are in our service range! </Typography>
-                            :
-                                <Typography align="center" variant="h6" style={{fontFamily: "Anton", letterSpacing: "3px", padding: "5%"}}> You are in our service range! </Typography>
-                            }
-
+                            
                         </Grid>
                         <Grid item xs={12} sm={6} md={6} >
                             <img src={"/Logo.png"} alt={"Logo"} style={{ borderRadius: 15, display: "flex", margin: "auto", height: 100, marginTop: "5%", marginBottom: "5%"}} />

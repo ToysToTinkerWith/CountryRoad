@@ -2,11 +2,14 @@ import React from "react"
 
 import Head from "next/head"
 
-import NewPost from "../components/NewPost"
-import PostsDisplay from "../components/PostsDisplay"
+import NewPost from "../components/Post/NewPost"
+import PostsDisplay from "../components/Post/PostsDisplay"
+import PostsDatabase from "../components/Post/PostsDatabase"
+
 
 
 import { Grid, Card, Button, Modal, Typography } from "@mui/material"
+
 
 export default class Work extends React.Component {
 
@@ -51,15 +54,44 @@ export default class Work extends React.Component {
                 
                 </Head>
 
-                <Button 
-                    variant="contained"
-                    onClick={() => this.setState({newPost: !this.state.newPost})}
-                    style={{color: "#E5650F", backgroundColor: "#FFFFFF", margin: "2%"}}
-                > 
-                New Post 
-                </Button>
+                <Grid container alignItems="center" >
+                    <Grid item xs={12} sm={6} md={6}>
+                        <>
+                        <Typography align="center" variant="h2" style={{fontFamily: "Anton", color: "#FFFFFF", margin: "5%"}}> OUR WORK </Typography>
+                        </>
+                        
+                        
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={6}>
+                        
+                    <Typography align="center" variant="h6" style={{fontFamily: "Signika", color: "#000000", margin: "5%", marginTop: "5%"}}> As a local company, we’ve seen the positive impact our solutions have had on the wellbeing of our neighbors and the community at large, and we are looking forward to continuing to work with our customers to enhance their travels around Whidbey Island.</Typography>
 
-                <PostsDisplay />
+                    </Grid>
+                </Grid>
+
+                
+
+                <div style={{backgroundColor: "#000000"}}>
+                <Typography align="left" variant="h3" style={{fontFamily: "Anton", color: "#E5650F", padding: "5%", marginBottom: 0}}> RECENT JOBS</Typography>
+
+                  <Button 
+                      variant="contained"
+                      onClick={() => this.setState({newPost: !this.state.newPost})}
+                      style={{color: "#E5650F", backgroundColor: "#FFFFFF", margin: "2%"}}
+                  > 
+                  New Post 
+                  </Button>
+                  <PostsDisplay />
+                </div>
+
+                <div style={{backgroundColor: "#FFFFFF"}}>
+                  <Typography align="left" variant="h3" style={{fontFamily: "Anton", color: "#000000", padding: "5%", marginBottom: 0}}> JOB DATABASE</Typography>
+
+                  <PostsDatabase />
+                </div>
+
+
+                
 
 
 

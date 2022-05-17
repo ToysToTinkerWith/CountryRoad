@@ -48,14 +48,14 @@ export default class Nav extends React.Component {
                             <Button 
                             variant="text"
                             style={{
-                            color: window.location.pathname == "/Contact" ? "#FFFFFF" : "#000000",
+                            color: window.location.pathname == "/contact" ? "#FFFFFF" : "#000000",
                             float: "right",
                             padding: "2%",
                             marginTop: "2%",
                             marginRight: "2%"
                             }}
                 
-                            href="/Contact"
+                            href="/contact"
                             
                             > 
                             <Typography variant="h5" style={{fontFamily: "Anton"}}>
@@ -66,13 +66,13 @@ export default class Nav extends React.Component {
                             <Button 
                             variant="text"
                             style={{
-                            color: window.location.pathname == "/Work" ? "#FFFFFF" : "#000000",
+                            color: window.location.pathname == "/work" ? "#FFFFFF" : "#000000",
                             float: "right",
                             padding: "2%",
                             marginTop: "2%"
                             }}
                 
-                            href="/Work"
+                            href="/work"
                             
                             > 
                             <Typography variant="h5" style={{fontFamily: "Anton"}}>
@@ -83,13 +83,13 @@ export default class Nav extends React.Component {
                             <Button 
                             variant="text"
                             style={{
-                            color: window.location.pathname == "/About" ? "#FFFFFF" : "#000000",
+                            color: window.location.pathname == "/about" ? "#FFFFFF" : "#000000",
                             float: "right",
                             padding: "2%",
                             marginTop: "2%"
                             }}
                 
-                            href="/About"
+                            href="/about"
                             
                             > 
                             <Typography align="right" variant="h5" style={{fontFamily: "Anton"}}>
