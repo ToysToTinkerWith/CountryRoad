@@ -38,8 +38,6 @@ export default class RequestsDatabase extends React.Component {
             let requestData = request.data()
             requestData.id = request.id
 
-            console.log(request.data().created.toDate().toLocaleDateString())
-
             let requestDate = new Date(request.data().created.toDate())
             requestData.created = requestDate.toLocaleDateString()
 
@@ -64,8 +62,8 @@ export default class RequestsDatabase extends React.Component {
         const Columns = [
   
             { 
-            field: 'email', 
-            headerName: <Typography variant="h6" style={{fontFamily: "Signika", color: "#000000"}}> Email </Typography>, 
+            field: 'name', 
+            headerName: <Typography variant="h6" style={{fontFamily: "Signika", color: "#000000"}}> Name </Typography>, 
             flex: 1,
             minWidth: 50, 
             renderCell: (params) => (
@@ -74,24 +72,14 @@ export default class RequestsDatabase extends React.Component {
                 variant="contained"
                 color="secondary"
                 size="small"
-                style={{ padding: 10 }}
+                style={{ padding: 10, backgroundColor: "#E5650F" }}
                 onClick={() => [this.setState({request: params.row.id})]}
               >
-                {params.row.email} 
+                {params.row.name} 
                 </Button>
             ),
             },
-            { 
-            field: 'address', 
-            headerName: <Typography variant="h6" style={{fontFamily: "Signika", color: "#000000"}}> Address </Typography>, 
-            type: "text",
-            flex: 1,
-            minWidth: 50, 
-            renderCell: (params) => (
-                    
-                <Typography style={{color: "#000000"}}> {params.row.address} </Typography>
-            ),
-            },
+           
             { 
             field: 'created', 
             headerName: <Typography variant="h6" style={{fontFamily: "Signika", color: "#000000"}}> Created </Typography>, 
@@ -123,7 +111,7 @@ export default class RequestsDatabase extends React.Component {
                     overflowX: "hidden"
                 }}>
                     <Card>
-                    <Button variant="contained" color="primary" style={{margin: "5%"}} onClick={() => this.setState({request: null})}> Back </Button>
+                    <Button variant="contained" color="primary" style={{margin: "5%", padding: 10, backgroundColor: "#E5650F"}} onClick={() => this.setState({request: null})}> Back </Button>
                     <RequestDisplay closeModal={() => this.setState({request: null})} requestId={this.state.request} />
                     </Card>
                 

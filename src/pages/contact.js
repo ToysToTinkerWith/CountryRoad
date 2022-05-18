@@ -71,15 +71,18 @@ export default class Contact extends React.Component {
                 email: this.state.email,
                 phone: this.state.phone,
                 address: this.state.address,
-                description: this.state.description,
                 title: "",
+                description: this.state.description,
                 scheduled: "",
                 estimate: 0,
+                completed: false,
                 created: serverTimestamp()
                 
             }).then(doc => {
     
                 const uploadPictures = this.state.pictures
+
+                this.setState({confirm: false, name: "", email: "", phone: "", address: "", description: "", pictures: [], alert: "Thank you! We have recieved your request. A Country Roads employee will be in touch."})
     
                     for (let y = 0; y < uploadPictures.length; y++) {
     
@@ -115,9 +118,9 @@ export default class Contact extends React.Component {
             
                 }
             
-                }).then(
-                    this.setState({confirm: false, email: "", phone: "", address: "", description: "", pictures: [], alert: "Thank you! We have recieved your request. A Country Roads employee will be in touch."})
-                )
+                })
+                    
+                
         }
 
         

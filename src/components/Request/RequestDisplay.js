@@ -84,9 +84,18 @@ export default class RequestDisplay extends React.Component {
 
 
             <Typography variant="h6" style={{color: "#000000", fontFamily: "Signika", margin: "10%", marginTop: "2%", marginBottom: "2%"}}> {this.state.request.description}</Typography>
-            <Typography variant="h5" style={{color: "#000000", fontFamily: "Signika", margin: "10%", marginTop: "2%", marginBottom: "2%"}}> Recieved: {requestDate.toDateString()}</Typography>
-            <Typography variant="h5" style={{color: "#000000", fontFamily: "Signika", margin: "10%", marginTop: "2%", marginBottom: "2%"}}> Scheduled: {new Date(this.state.request.scheduled + "T16:00").toDateString()}</Typography>
-            <Typography variant="h3" style={{color: "#000000", fontFamily: "Signika", margin: "10%", marginTop: "2%", marginBottom: "2%"}}> ${this.state.request.estimate}</Typography>
+            <Typography variant="h5" style={{color: "#000000", fontFamily: "Signika", margin: "10%", marginTop: "2%", marginBottom: "2%"}}> Created: {requestDate.toDateString()}</Typography>
+            {this.state.request.scheduled ?
+                <Typography variant="h5" style={{color: "#000000", fontFamily: "Signika", margin: "10%", marginTop: "2%", marginBottom: "2%"}}> Scheduled: {new Date(this.state.request.scheduled + "T16:00").toDateString()}</Typography>
+            :
+            null
+            }
+            {this.state.request.estimate != 0 ?
+                <Typography variant="h3" style={{color: "#000000", fontFamily: "Signika", margin: "10%", marginTop: "2%", marginBottom: "2%"}}> ${this.state.request.estimate}</Typography>
+            :
+            null
+            }
+            
 
 
             
@@ -151,7 +160,7 @@ export default class RequestDisplay extends React.Component {
                         overflowX: "hidden"
                     }}>
                         <Card>
-                        <Button variant="contained" color="primary" style={{margin: "5%"}} onClick={() => this.setState({editRequest: null})}> Back </Button>
+                        <Button variant="contained" color="primary" style={{margin: "5%", padding: 10, backgroundColor: "#E5650F"}} onClick={() => this.setState({editRequest: null})}> Back </Button>
                         <EditRequest closeModal={() => this.setState({editRequest: null})} requestId={this.state.editRequest} />
                         </Card>
                     

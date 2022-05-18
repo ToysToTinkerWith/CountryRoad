@@ -8,7 +8,7 @@ import { ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "firebase
 
 
 
-import { Modal, Button, TextField, Typography, Card, Grid} from "@mui/material"
+import { Modal, Button, TextField, Typography, Checkbox, Card, Grid} from "@mui/material"
 
 
 export default class EditRequest extends React.Component {
@@ -19,6 +19,9 @@ export default class EditRequest extends React.Component {
         super(props)
         this.state = {
             name: "",
+            email: "",
+            phone: "",
+            address: "",
             title: "",
             description: "",
             scheduled: "",
@@ -51,10 +54,14 @@ export default class EditRequest extends React.Component {
         this.unsub = onSnapshot(requestRef, (doc) => {
             this.setState({
                 name: doc.data().name,
+                email: doc.data().email,
+                phone: doc.data().phone,
+                address: doc.data().address,
                 title: doc.data().title,
                 description: doc.data().description,
                 scheduled: doc.data().scheduled,
-                estimate: doc.data().estimate
+                estimate: doc.data().estimate,
+                completed: doc.data().completed
             })
             const imgsRef = collection(db, "requests", this.props.requestId, "imgs")
             this.unsub2 = onSnapshot(imgsRef, (query) => {
@@ -94,16 +101,18 @@ export default class EditRequest extends React.Component {
         })
        
 
-        
-
-
         const requestRef = doc(db, "requests", this.props.requestId)
 
         await updateDoc(requestRef, {
+            name: this.state.name,
+            email: this.state.email,
+            phone: this.state.phone,
+            address: this.state.address,
             title: this.state.title,
             description: this.state.description,
             scheduled: this.state.scheduled,
             estimate: this.state.estimate,
+            completed: this.state.completed,
             updated: serverTimestamp()
             
         }).then((doc) => {
@@ -233,6 +242,48 @@ export default class EditRequest extends React.Component {
                     <TextField
                     color="primary"
                     variant="outlined"
+                    value={this.state.email}
+                    type="email"
+                    label={"Client Email"}
+                    name={"email"}
+                    style={{width: "50%", display: "flex", margin: "auto"}}
+                    onChange={this.handleChange}
+                    />
+
+                    <br />
+                    <br />
+
+                    <TextField
+                    color="primary"
+                    variant="outlined"
+                    value={this.state.phone}
+                    type="phone"
+                    label={"Client Phone"}
+                    name={"phone"}
+                    style={{width: "50%", display: "flex", margin: "auto"}}
+                    onChange={this.handleChange}
+                    />
+
+                    <br />
+                    <br />
+
+                    <TextField
+                    color="primary"
+                    variant="outlined"
+                    value={this.state.address}
+                    type="address"
+                    label={"Client Address"}
+                    name={"address"}
+                    style={{width: "50%", display: "flex", margin: "auto"}}
+                    onChange={this.handleChange}
+                    />
+
+                    <br />
+                    <br />
+
+                    <TextField
+                    color="primary"
+                    variant="outlined"
                     value={this.state.title}
                     type="text"
                     label={"Request Title"}
@@ -265,6 +316,7 @@ export default class EditRequest extends React.Component {
                     variant="outlined"
                     value={this.state.scheduled}
                     type="date"
+                    InputLabelProps={{ shrink: true }}
                     label={"Schedule"}
                     name={"scheduled"}
                     style={{width: "50%", display: "flex", margin: "auto"}}
@@ -288,12 +340,15 @@ export default class EditRequest extends React.Component {
                     <br />
                     <br />
                     
-                    <Button variant="contained" component="label" color="secondary" style={{width: 100, display: "flex", margin: "auto"}}>
+                    <Button variant="contained" component="label" color="secondary" style={{width: 100, padding: 10, backgroundColor: "#E5650F", display: "flex", margin: "auto"}}>
                     Add Photos
                     <input type="file" multiple onChange={this.handlePicture} style={{width: 0, opacity: 0}}/>
 
                     </Button>
                     <br />
+                    
+
+              
                     
 
                     <div style={{textAlign: "center"}}>
@@ -318,7 +373,7 @@ export default class EditRequest extends React.Component {
                                 width: "70%"
                                 }}
                             />
-                            <Button variant="contained" color="primary" style={{margin: 10}} onClick={() => this.deletePicture(picture.id)}>
+                            <Button variant="contained" color="primary" style={{margin: 10, padding: 10, backgroundColor: "#E5650F"}} onClick={() => this.deletePicture(picture.id)}>
                                 Del
                             </Button>   
                             </div>
@@ -327,7 +382,7 @@ export default class EditRequest extends React.Component {
                         :
                         null
                         }
-                        <hr />
+
                         {this.state.oldPictures.length > 0 ? this.state.oldPictures.map((picture, index) => {
                         return (
                             <div key={index} style={{display: "inline-block", border: "1px solid black", borderRadius: 5, margin: 5, padding: 10}}>
@@ -349,7 +404,7 @@ export default class EditRequest extends React.Component {
                                 width: "70%"
                                 }}
                             />
-                            <Button variant="contained" color="primary" style={{margin: 10}} onClick={() => this.setState({pictureWarning: picture[1]})}>
+                            <Button variant="contained" color="primary" style={{margin: 10, padding: 10, backgroundColor: "#E5650F"}} onClick={() => this.setState({pictureWarning: picture[1]})}>
                                 Del
                             </Button>
                             
@@ -360,6 +415,18 @@ export default class EditRequest extends React.Component {
                         null
                         }
                     </div>
+                    <br />
+
+                    <Typography align="center" > Completed </Typography>
+
+                    <Checkbox
+                    color="primary"
+                    value={this.state.completed}
+                    label={"Completed"}
+                    name={"completed"}
+                    style={{display: "flex", margin: "auto", width: 50}}
+                    onChange={this.handleChange}
+                    />
 
                     <br />
                     <br />
@@ -367,7 +434,7 @@ export default class EditRequest extends React.Component {
                 <Button
                 color="secondary"
                 variant="contained"
-                style={{width: 100, display: "flex", margin: "auto"}}
+                style={{width: 100, padding: 10, backgroundColor: "#E5650F", display: "flex", margin: "auto"}}
                 onClick={() => 
                     [this.updateRequest(), this.props.closeModal()]
                     }

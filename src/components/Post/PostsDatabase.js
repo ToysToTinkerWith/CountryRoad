@@ -75,7 +75,7 @@ export default class PostsDatabase extends React.Component {
                 variant="contained"
                 color="secondary"
                 size="small"
-                style={{ padding: 10 }}
+                style={{ padding: 10, backgroundColor: "#" }}
                 onClick={() => [this.setState({post: params.row.id})]}
               >
                 {params.row.title} 

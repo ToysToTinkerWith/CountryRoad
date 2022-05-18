@@ -5,6 +5,7 @@ import { signOut } from "firebase/auth";
 
 import User from "./User"
 import RequestsDatabase from "../Request/RequestsDatabase";
+import RequestsMap from "../Request/RequestsMap"
 import NewRequest from "../Request/NewRequest"
 
 
@@ -63,20 +64,19 @@ export default class Employee extends React.Component {
                     onClick={async () => await signOut(auth).then(window.location.href = "/")}
                     style={{ display: "flex", float: "right", backgroundColor: "#E5650F", borderRadius: 15, marginRight: 10, padding: 10 }}
                     >
-                    Log Out
+                   <Typography variant="body1" style={{fontFmaily: "Signika", color: "white"}}> Log Out</Typography>
                     </Button>
-                    <Typography variant="h5" align="left" style={{paddingLeft: 20}}> Admin </Typography>
+                    <Typography variant="h5" align="left" style={{color: "white", paddingLeft: 20}}> Admin </Typography>
 
                     <Button 
                     variant="contained" 
                     onClick={() => this.setState({newRequest: true})}
-                    style={{ display: "flex", float: "left", backgroundColor: "#E5650F", borderRadius: 15, margin: 10, padding: 10 }}
+                    style={{ display: "block", backgroundColor: "#E5650F", borderRadius: 15, margin: 10, padding: 10 }}
                     >
-                    New Request
+                    <Typography variant="body1" style={{fontFmaily: "Signika", color: "white"}}> New Request </Typography>
                     </Button>
                         
-                    <br />
-                    <br />
+              
 
                     <IconButton 
                     style={{width: 100, borderRadius: 15, backgroundColor: this.state.page == "user" ? "#E5650F" : null}} 
@@ -100,7 +100,10 @@ export default class Employee extends React.Component {
                     }
 
                     {this.state.page == "requests" ? 
-                        <RequestsDatabase profile={this.props.profile} profileId={this.props.profileId} />
+                        <>
+                            <RequestsDatabase profile={this.props.profile} profileId={this.props.profileId} />
+                            <RequestsMap />
+                        </>
                         :
                         null
                     }
@@ -114,7 +117,7 @@ export default class Employee extends React.Component {
                         overflowX: "hidden"
                     }}>
                         <Card>
-                        <Button variant="contained" color="primary" style={{margin: "5%"}} onClick={() => this.setState({newRequest: null})}> Back </Button>
+                        <Button variant="contained" color="primary" style={{margin: "5%", padding: 10, backgroundColor: "#E5650F"}} onClick={() => this.setState({newRequest: null})}> Back </Button>
                         <NewRequest closeModal={() => this.setState({newRequest: null})} />
                         </Card>
                     
